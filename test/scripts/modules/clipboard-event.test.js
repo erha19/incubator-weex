@@ -14,19 +14,20 @@ describe('weex '+goal+' test', function () {
   this.timeout(util.getTimeoutMills());
   var driver = util.createDriver(wd);
 
-  before(function () {
+  beforeEach(function () {
     return util.init(driver)
       .get(util.getPage('/modules/'+goal+'.js'))
-      .waitForElementByName(goal, timeout, 2000)
   });
 
-  after(function () {
+  afterEach(function () {
     return util.quit(driver);
   })
 
   it('#1 '+goal + ' event', () => {
     //TODO ：截图比对
-    return driver.waitForElementByName('setItem', timeout, 2000)
+    return driver
+      .waitForElementByName(goal, timeout, 2000)
+      .waitForElementByName('setItem', timeout, 2000)
       .click()
       .waitForElementByName('getItem', timeout, 2000) 
       .click()

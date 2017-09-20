@@ -64,9 +64,11 @@
     /**
      * accessibility support
      */
-    UIAccessibilityTraits _role; //accessibility
+    NSString * _roles; //accessibility
     NSString * _ariaLabel; //accessibilityLabel
-    BOOL _ariaHidden; // accessibilityElementsHidden
+    NSString * _ariaHidden; // accessibilityElementsHidden
+    NSString * _accessible; // accessible
+    NSString * _accessibilityHintContent; // hint for the action
     NSString * _testId;// just for auto-test
     
     /**
@@ -180,6 +182,8 @@
 - (void)_handleLayoutAnimationWithStyles:(NSDictionary *)styles;
 
 - (void)_modifyStyles:(NSDictionary *)styles;
+
+- (void)_transitionUpdateViewProperty:(NSDictionary *)styles;
 
 - (void)_initCSSNodeWithStyles:(NSDictionary *)styles;
 

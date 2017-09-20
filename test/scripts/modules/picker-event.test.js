@@ -14,28 +14,29 @@ describe('weex '+goal+' test', function () {
   this.timeout(util.getTimeoutMills());
   var driver = util.createDriver(wd);
 
-  before(function () {
+  beforeEach(function () {
     return util.init(driver)
       .get(util.getPage('/modules/'+goal+'.js'))
-      .waitForElementByName(goal, timeout, 2000)
   });
 
-  after(function () {
+  afterEach(function () {
     return util.quit(driver);
   })
 
   it('#1 '+goal + ' event', () => {
     //TODO ：截图比对
-    var self = driver.waitForElementByName('showPicker', timeout, 2000)
+    var self = driver
+      .waitForElementByName(goal, timeout, 2000)
+      .waitForElementByName('showPicker', timeout, 2000)
       .click();
     if(util.isIos()){
       return self.waitForElementByName('Done', timeout, 2000)
       .click()
-      .waitForElementByName('2018-01-01') 
+      .waitForElementByName('2018-01-31') 
     }else{
       return self.waitForElementByName('OK', timeout, 2000)
       .click()
-      .waitForElementByName('2018-01-1') 
+      .waitForElementByName('2018-01-31') 
     }
   })
 });

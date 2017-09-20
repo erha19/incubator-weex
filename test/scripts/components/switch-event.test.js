@@ -15,18 +15,18 @@ describe('weex '+goal+' test', function () {
   this.timeout(util.getTimeoutMills());
   var driver = util.createDriver(wd);
 
-  before(function () {
+  beforeEach(function () {
     return util.init(driver)
       .get(util.getPage('/components/'+goal+'.js'))
-      .waitForElementByName(goal, interval, 2000)
   });
 
-  after(function () {
+  afterEach(function () {
     return util.quit(driver);
   })
 
   it('#1 '+goal + ' event', () => {
     return driver
+      .waitForElementByName(goal, interval, 2000)
       .waitForElementById(switchTag, interval, 2000)
       .click()
       .waitForElementByName('change response:true', interval, 2000)
